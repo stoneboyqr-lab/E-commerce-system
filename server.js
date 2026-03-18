@@ -14,6 +14,7 @@ import cartRoutes from "./routes/cartRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import couponRoutes from "./routes/couponRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 // Must be first
 dotenv.config();
@@ -90,6 +91,7 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/coupons", couponRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 // Test route
 app.get("/", (req, res) => {
