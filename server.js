@@ -17,6 +17,7 @@ import couponRoutes from "./routes/couponRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import startSaleExpiryJob from "./utils/saleExpiry.js";
 
 // Must be first
 dotenv.config();
@@ -84,6 +85,9 @@ app.use("/uploads", express.static("uploads"));
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
+  
+  // Start cron jobs
+startSaleExpiryJob();
 
 // Routes
 app.use("/api/auth", authRoutes);

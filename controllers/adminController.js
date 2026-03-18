@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import Product from "../models/Product.js";
 import Order from "../models/Order.js";
-import Review from "../models/Review.js";
+// import Review from "../models/Review.js";
 
 // @desc    Get dashboard stats
 // @route   GET /api/admin/dashboard
