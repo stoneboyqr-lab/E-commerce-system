@@ -1,10 +1,13 @@
 import express from "express";
-import {
+ import {
   register,
   login,
   logout,
   getMe,
+  updateProfile,
+  changePassword,
 } from "../controllers/authController.js";
+
 import { verifyUser } from "../middleware/verifyUser.js";
 import rateLimit from "express-rate-limit";
 
@@ -24,5 +27,7 @@ router.post("/register", register);
 router.post("/login", loginLimiter, login);
 router.post("/logout", logout);
 router.get("/me", verifyUser, getMe);
+router.patch("/me", verifyUser, updateProfile);
+router.patch("/change-password", verifyUser, changePassword);
 
 export default router;

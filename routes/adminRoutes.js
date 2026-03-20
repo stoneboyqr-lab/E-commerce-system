@@ -14,10 +14,10 @@ const router = express.Router();
 
 router.get("/dashboard", verifyAdmin, getDashboardStats);
 router.get("/users", verifyAdmin, getAllUsers);
-router.patch("/users/:id/toggle-ban", verifyAdmin, toggleBanUser);
 router.delete("/users/:id", verifyAdmin, deleteUser);
 router.get("/profile", verifyAdmin, getAdminProfile);
 router.patch("/profile", verifyAdmin, updateAdminProfile);
+router.patch("/users/:id/toggle-ban", verifyAdmin, toggleBanUser);
 router.patch("/password", verifyAdmin, resetAdminPassword);
 
 export default router;

@@ -1,0 +1,44 @@
+/* ── Page Header ── */
+.page-header {
+  background: var(--dark);
+  padding: 120px 0 60px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+}
+
+/* ── Wishlist Section ── */
+.wishlist-section {
+  background: var(--light-2);
+}
+
+.wishlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.wishlist-header h2 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.wishlist-count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+

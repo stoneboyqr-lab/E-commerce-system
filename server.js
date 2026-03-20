@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import helmet from "helmet";
+// import helmet from "helmet";
 import hpp from "hpp";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -18,6 +18,9 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import startSaleExpiryJob from "./utils/saleExpiry.js";
+import dns from "dns"
+
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 // Must be first
 dotenv.config();
@@ -53,7 +56,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Security middleware
-app.use(helmet());
+// app.use(helmet());
 app.use(hpp());
 app.set("trust proxy", 1);
 
@@ -63,7 +66,7 @@ app.use((req, res, next) => {
     if (!obj) return;
     for (const key in obj) {
       if (typeof obj[key] === "string") {
-        obj[key] = obj[key].replace(/\$/g, "").replace(/\./g, "");
+        obj[key] = obj[key].replace(/\$/g, "");
         obj[key] = obj[key].replace(/<script.*?>.*?<\/script>/gi, "");
         obj[key] = obj[key].replace(/<[^>]*>/g, "");
       } else if (typeof obj[key] === "object") {
@@ -101,8 +104,11 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/admin", adminRoutes);
 
-
 // Test route
+app.get("/api/config/paystack", (req, res) => {
+  res.json({ publicKey: process.env.PAYSTACK_PUBLIC_KEY });
+});
+
 app.get("/", (req, res) => {
   res.send("E-commerce API running");
 });

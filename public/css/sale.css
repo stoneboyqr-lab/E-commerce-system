@@ -1,0 +1,122 @@
+/* ── Sale Hero ── */
+.sale-hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #1a0a00 100%);
+  padding: 140px 0 80px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.sale-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sale-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sale-hero-tag {
+  display: inline-block;
+  background: rgba(245,158,11,0.15);
+  color: var(--primary);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(245,158,11,0.3);
+}
+
+.sale-hero h1 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.sale-hero p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+/* Countdown */
+.sale-hero-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.countdown-item {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  text-align: center;
+  min-width: 90px;
+}
+
+.countdown-num {
+  display: block;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.countdown-sep {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+/* ── Sale Section ── */
+.sale-section {
+  background: var(--light-2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .sale-hero h1 { font-size: 2.8rem; }
+  .sale-hero-countdown { flex-wrap: wrap; }
+  .countdown-item { min-width: 70px; padding: 16px 20px; }
+  .countdown-num { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .sale-hero h1 { font-size: 2.2rem; }
+}
+
+
+
+
+
+
+
+
+
+
+
+

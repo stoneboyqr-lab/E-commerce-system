@@ -169,7 +169,7 @@ function createProductCard(product) {
           ${product.onSale ? '<span class="badge badge-sale">Sale</span>' : ""}
           ${product.stock === 0 ? '<span class="badge" style="background:#64748b;color:#fff">Out of Stock</span>' : ""}
         </div>
-        <button class="product-card-wishlist" onclick="toggleWishlist('${product._id}', this)">
+        <button class="product-card-wishlist toggle-wishlist-btn" data-id="${product._id}">
           <i class="fa-regular fa-heart"></i>
         </button>
       </div>
@@ -184,7 +184,7 @@ function createProductCard(product) {
         </div>
         <div class="product-card-price">${price}</div>
         <div class="product-card-footer">
-          <button class="btn btn-primary" onclick="addToCart('${product._id}')"
+          <button class="btn btn-primary add-to-cart-btn" data-id="${product._id}"
             ${product.stock === 0 ? "disabled style='opacity:0.5;cursor:not-allowed'" : ""}>
             <i class="fa-solid fa-bag-shopping"></i> Add to Cart
           </button>
@@ -194,6 +194,23 @@ function createProductCard(product) {
   `;
 }
 
+// ── Event delegation for dynamically rendered cards ──
+document.addEventListener("click", (e) => {
+  // Add to cart
+  const cartBtn = e.target.closest(".add-to-cart-btn");
+  if (cartBtn && !cartBtn.disabled) {
+    addToCart(cartBtn.dataset.id);
+    return;
+  }
+
+  // Toggle wishlist
+  const wishlistBtn = e.target.closest(".toggle-wishlist-btn");
+  if (wishlistBtn) {
+    toggleWishlist(wishlistBtn.dataset.id, wishlistBtn);
+  }
+});
+
 // ── Init ──
 checkAuth();
 updateCartCount();
+

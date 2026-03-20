@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coupons — Lvst Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-header">
+        <div class="admin-logo">Lvst<span>Admin</span></div>
+        <div class="admin-logo-sub">Management Panel</div>
+      </div>
+      <nav class="admin-nav">
+        <p class="admin-nav-section">Main</p>
+        <a href="./dashboard.html" class="admin-nav-item">
+          <i class="fa-solid fa-chart-pie"></i> Dashboard
+        </a>
+        <p class="admin-nav-section">Catalogue</p>
+        <a href="./products.html" class="admin-nav-item">
+          <i class="fa-solid fa-box"></i> Products
+        </a>
+        <a href="./categories.html" class="admin-nav-item">
+          <i class="fa-solid fa-tags"></i> Categories
+        </a>
+        <p class="admin-nav-section">Sales</p>
+        <a href="./orders.html" class="admin-nav-item">
+          <i class="fa-solid fa-receipt"></i> Orders
+        </a>
+        <a href="./coupons.html" class="admin-nav-item active">
+          <i class="fa-solid fa-ticket"></i> Coupons
+        </a>
+        <p class="admin-nav-section">Community</p>
+        <a href="./users.html" class="admin-nav-item">
+          <i class="fa-solid fa-users"></i> Users
+        </a>
+        <a href="./reviews.html" class="admin-nav-item">
+          <i class="fa-solid fa-star"></i> Reviews
+        </a>
+        <a href="./notifications.html" class="admin-nav-item">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <hr class="admin-nav-divider">
+        <a href="../index.html" class="admin-nav-item">
+          <i class="fa-solid fa-store"></i> View Store
+        </a>
+        <button class="admin-nav-item" id="adminLogout" style="width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:inherit;color:rgba(255,255,255,0.6);font-size:0.9rem;font-weight:500;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div class="admin-topbar-left">
+          <h1>Coupons</h1>
+          <p>Manage discount coupons</p>
+        </div>
+        <div class="admin-topbar-right">
+          <div class="admin-user">
+            <div class="admin-avatar" id="adminAvatar">A</div>
+            <span class="admin-user-name" id="adminName">Admin</span>
+          </div>
+          <button class="admin-hamburger" id="adminHamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2>All Coupons</h2>
+            <button class="btn btn-primary" id="addCouponBtn">
+              <i class="fa-solid fa-plus"></i> Add Coupon
+            </button>
+          </div>
+          <div class="admin-table-wrap">
+            <div id="couponsTableContent"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Coupon Modal -->
+  <div class="modal-overlay" id="couponModal">
+    <div class="modal">
+      <button class="modal-close" id="closeCouponModal">&times;</button>
+      <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;font-weight:700;color:var(--dark);margin-bottom:24px">Add Coupon</h2>
+      <div class="admin-form-group">
+        <label>Coupon Code</label>
+        <input type="text" id="couponCode" placeholder="e.g. SAVE20" style="text-transform:uppercase">
+      </div>
+      <div class="admin-form-row">
+        <div class="admin-form-group">
+          <label>Type</label>
+          <select id="couponType">
+            <option value="percentage">Percentage (%)</option>
+            <option value="fixed">Fixed (₦)</option>
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label>Discount Value</label>
+          <input type="number" id="couponDiscount" placeholder="0">
+        </div>
+      </div>
+      <div class="admin-form-row">
+        <div class="admin-form-group">
+          <label>Min Order Amount (₦)</label>
+          <input type="number" id="couponMinOrder" placeholder="0">
+        </div>
+        <div class="admin-form-group">
+          <label>Usage Limit</label>
+          <input type="number" id="couponLimit" placeholder="Unlimited">
+        </div>
+      </div>
+      <div class="admin-form-group">
+        <label>Expires At</label>
+        <input type="date" id="couponExpiry">
+      </div>
+      <button class="btn btn-primary" id="saveCouponBtn" style="width:100%;justify-content:center;margin-top:8px">
+        Save Coupon
+      </button>
+      <p id="couponMsg" style="margin-top:12px;font-size:0.85rem"></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/admin/main.js"></script>
+  <script src="../js/admin/coupons.js"></script>
+</body>
+</html>
+
+

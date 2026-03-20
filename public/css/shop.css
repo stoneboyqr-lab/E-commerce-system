@@ -1,0 +1,244 @@
+/* ── Page Header ── */
+.page-header {
+  background: var(--dark);
+  padding: 120px 0 60px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+}
+
+/* ── Shop Layout ── */
+.shop-section {
+  background: var(--light-2);
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* ── Sidebar ── */
+.shop-sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-right: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.sidebar-card h3 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--light-3);
+}
+
+.sidebar-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-categories a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.sidebar-categories a:hover,
+.sidebar-categories a.active {
+  background: rgba(245,158,11,0.1);
+  color: var(--primary-dark);
+}
+
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.price-range input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 2px solid var(--light-3);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.price-range input:focus {
+  border-color: var(--primary);
+}
+
+.price-range span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ── Shop Main ── */
+.shop-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.shop-toolbar {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+
+.shop-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--light-2);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  min-width: 200px;
+}
+
+.shop-search i {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.shop-search input {
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--text);
+  width: 100%;
+}
+
+.shop-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.shop-sort select {
+  padding: 10px 16px;
+  border: 2px solid var(--light-3);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.shop-sort select:focus {
+  border-color: var(--primary);
+}
+
+.shop-count {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius);
+  border: 2px solid var(--light-3);
+  background: var(--white);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination button:hover,
+.pagination button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--dark);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .shop-layout {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-sidebar {
+    position: static;
+  }
+}

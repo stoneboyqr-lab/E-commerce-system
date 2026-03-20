@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Lvst Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-header">
+        <div class="admin-logo">Lvst<span>Admin</span></div>
+        <div class="admin-logo-sub">Management Panel</div>
+      </div>
+      <nav class="admin-nav">
+        <p class="admin-nav-section">Main</p>
+        <a href="./dashboard.html" class="admin-nav-item">
+          <i class="fa-solid fa-chart-pie"></i> Dashboard
+        </a>
+        <p class="admin-nav-section">Catalogue</p>
+        <a href="./products.html" class="admin-nav-item active">
+          <i class="fa-solid fa-box"></i> Products
+        </a>
+        <a href="./categories.html" class="admin-nav-item">
+          <i class="fa-solid fa-tags"></i> Categories
+        </a>
+        <p class="admin-nav-section">Sales</p>
+        <a href="./orders.html" class="admin-nav-item">
+          <i class="fa-solid fa-receipt"></i> Orders
+        </a>
+        <a href="./coupons.html" class="admin-nav-item">
+          <i class="fa-solid fa-ticket"></i> Coupons
+        </a>
+        <p class="admin-nav-section">Community</p>
+        <a href="./users.html" class="admin-nav-item">
+          <i class="fa-solid fa-users"></i> Users
+        </a>
+        <a href="./reviews.html" class="admin-nav-item">
+          <i class="fa-solid fa-star"></i> Reviews
+        </a>
+        <a href="./notifications.html" class="admin-nav-item">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <hr class="admin-nav-divider">
+        <a href="../index.html" class="admin-nav-item">
+          <i class="fa-solid fa-store"></i> View Store
+        </a>
+        <button class="admin-nav-item" id="adminLogout" style="width:100%;text-align:left;background:transparent;border:none;cursor:pointer;font-family:inherit;color:rgba(255,255,255,0.6);font-size:0.9rem;font-weight:500;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div class="admin-topbar-left">
+          <h1>Products</h1>
+          <p>Manage your product catalogue</p>
+        </div>
+        <div class="admin-topbar-right">
+          <div class="admin-user">
+            <div class="admin-avatar" id="adminAvatar">A</div>
+            <span class="admin-user-name" id="adminName">Admin</span>
+          </div>
+          <button class="admin-hamburger" id="adminHamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2>All Products</h2>
+            <button class="btn btn-primary" id="addProductBtn">
+              <i class="fa-solid fa-plus"></i> Add Product
+            </button>
+          </div>
+          <div class="admin-table-wrap">
+            <div id="productsTableContent"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal" style="max-width:600px">
+      <button class="modal-close" id="closeProductModal">&times;</button>
+      <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;font-weight:700;color:var(--dark);margin-bottom:24px" id="productModalTitle">Add Product</h2>
+      <div id="productForm">
+        <div class="admin-form-group">
+          <label>Title</label>
+          <input type="text" id="productTitle" placeholder="Product title">
+        </div>
+        <div class="admin-form-group">
+          <label>Description</label>
+          <textarea id="productDescription" rows="3" placeholder="Product description"></textarea>
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label>Price (₦)</label>
+            <input type="number" id="productPrice" placeholder="0">
+          </div>
+          <div class="admin-form-group">
+            <label>Stock</label>
+            <input type="number" id="productStock" placeholder="0">
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label>Category</label>
+          <select id="productCategory">
+            <option value="">Select category</option>
+          </select>
+        </div>
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label>Sale Price (₦) — optional</label>
+            <input type="number" id="productSalePrice" placeholder="0">
+          </div>
+          <div class="admin-form-group">
+            <label>Sale Ends</label>
+            <input type="date" id="productSaleEnds">
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label>On Sale</label>
+          <select id="productOnSale">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label>Images</label>
+          <input type="file" id="productImages" multiple accept="image/*">
+        </div>
+        <input type="hidden" id="productId">
+        <button class="btn btn-primary" id="saveProductBtn" style="width:100%;justify-content:center;margin-top:8px">
+          Save Product
+        </button>
+        <p id="productMsg" style="margin-top:12px;font-size:0.85rem"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/admin/main.js"></script>
+  <script src="../js/admin/products.js"></script>
+</body>
+</html>
+
+
+
+
+
+
