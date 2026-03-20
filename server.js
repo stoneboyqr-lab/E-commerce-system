@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-// import helmet from "helmet";
+import helmet from "helmet";
 import hpp from "hpp";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -56,9 +56,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Security middleware
-// app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://*.paystack.co", "https://cdnjs.cloudflare.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://*.paystack.com", "https://cdnjs.cloudflare.com", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
+      imgSrc: ["'self'", "data:", "blob:", "https://*.paystack.com", "https://placehold.co"],
+      connectSrc: ["'self'", "https://*.paystack.co", "https://api.paystack.co"],
+      frameSrc: ["'self'", "https://*.paystack.co", "https://*.paystack.com"],
+    }
+  },
+  crossOriginEmbedderPolicy: false,
+  crossOriginOpenerPolicy: false,
+  crossOriginResourcePolicy: false,
+}));
+
 app.use(hpp());
 app.set("trust proxy", 1);
+
 
 // Manual XSS and MongoDB injection sanitization
 app.use((req, res, next) => {
