@@ -15,7 +15,7 @@ async function loadCategories() {
     grid.innerHTML = categories.map((cat) => `
       <a href="./shop.html?category=${cat._id}" class="category-card">
         ${cat.image
-          ? `<img src="http://localhost:5000/uploads/${cat.image}" alt="${cat.name}">`
+          ? `<img src="${UPLOADS_URL}//${cat.image}" alt="${cat.name}">`
           : `<div class="category-card-icon">🛍️</div>`
         }
         <h4>${cat.name}</h4>

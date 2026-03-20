@@ -1,4 +1,6 @@
-const ADMIN_BASE_URL = "http://localhost:5000/api";
+const ADMIN_BASE_URL = window.location.hostname === "localhost" ? "http://localhost:5000/api" : "https://lvstcommerce-system.onrender.com/api";
+
+const UPLOADS_URL = window.location.hostname === "localhost" ? "localhost:5000/uploads" : "https://lvstcommerce-system.onrender.com/uploads";
 
 // ── Check admin auth ──
 async function checkAdminAuth() {

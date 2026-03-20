@@ -47,7 +47,7 @@ function renderCart() {
   const itemsHTML = cartData.items.map((item) => {
     const product = item.product;
     const image = product.images?.length
-      ? `http://localhost:5000/uploads/${product.images[0]}`
+      ? `${UPLOADS_URL}//${product.images[0]}`
       : `https://placehold.co/100x100?text=${encodeURIComponent(product.title)}`;
 
     const itemTotal = item.price * item.quantity;

@@ -26,7 +26,7 @@ async function loadCategories() {
             <tr>
               <td>
                 ${cat.image
-                  ? `<img src="http://localhost:5000/uploads/${cat.image}" alt="${cat.name}">`
+                  ? `<img src="${UPLOADS_URL}//${cat.image}" alt="${cat.name}">`
                   : `<div style="width:44px;height:44px;background:var(--light-2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--text-muted)"><i class="fa-solid fa-image"></i></div>`
                 }
               </td>

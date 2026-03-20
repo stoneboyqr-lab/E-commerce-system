@@ -60,7 +60,7 @@ function renderCheckout() {
   const itemsHTML = cartData.items.map((item) => {
     const product = item.product;
     const image = product.images?.length
-      ? `http://localhost:5000/uploads/${product.images[0]}`
+      ? `${UPLOADS_URL}//${product.images[0]}`
       : `https://placehold.co/56x56?text=IMG`;
 
     return `
