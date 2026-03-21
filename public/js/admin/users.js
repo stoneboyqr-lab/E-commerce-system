@@ -103,3 +103,5 @@ loadUsers();
 
 
 
+window.toggleBanUser = toggleBanUser;
+window.deleteUser = deleteUser;

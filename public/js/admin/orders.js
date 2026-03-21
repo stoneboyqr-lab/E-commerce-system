@@ -90,3 +90,8 @@ function viewOrderDetails(id) {
 }
 
 loadOrders();
+
+
+
+
+window.viewOrderDetails = viewOrderDetails;

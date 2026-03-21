@@ -145,3 +145,5 @@ loadCoupons();
 
 
 
+window.toggleCoupon = toggleCoupon;
+window.deleteCoupon = deleteCoupon;

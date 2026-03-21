@@ -1,6 +1,10 @@
-const BASE_URL = window.location.hostname === "localhost" ? "http://localhost:5000/api" : "https://lvstcommerce-system.onrender.com/api";
+const BASE_URL = window.location.hostname === "localhost" 
+? "http://localhost:5000/api" 
+: "https://lvstcommerce-system.onrender.com/api";
 
-const UPLOADS_URL = window.location.hostname === "localhost" ? "localhost:5000/uploads" : "https://lvstcommerce-system.onrender.com/uploads";
+const UPLOADS_URL = window.location.hostname === "localhost" 
+? "http://localhost:5000/uploads" 
+: "https://lvstcommerce-system.onrender.com/uploads";
 
 // ── Toast notification ──
 const toast = document.getElementById("toast");
@@ -155,7 +159,7 @@ function createProductCard(product) {
     : `<span class="current">₦${product.price.toLocaleString()}</span>`;
 
   const image = product.images?.length
-    ? `${UPLOADS_URL}//${product.images[0]}`
+    ? `${UPLOADS_URL}/${product.images[0]}`
     : `https://placehold.co/400x300?text=${encodeURIComponent(product.title)}`;
 
   const stars = "★".repeat(Math.round(product.ratings || 0)) +

@@ -64,3 +64,4 @@ async function deleteReview(id) {
 loadReviews();
 
 
+window.deleteReview = deleteReview;
