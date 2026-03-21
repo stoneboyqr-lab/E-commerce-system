@@ -19,11 +19,19 @@ import notificationRoutes from "./routes/notificationRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import startSaleExpiryJob from "./utils/saleExpiry.js";
 import dns from "dns"
+import fs from "fs";
+
+
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 // Must be first
 dotenv.config();
+
+// Create uploads folder if it doesn't exist
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads", { recursive: true });
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
