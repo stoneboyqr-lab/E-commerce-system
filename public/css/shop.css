@@ -240,5 +240,20 @@
 
   .shop-sidebar {
     position: static;
+    width: 100%;
+  }
+
+  .sidebar-card{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .price-range{
+    flex-wrap: nowrap;
+  }
+
+  .price-range input{
+    min-width: 0;
+    width: 100px;
   }
 }
