@@ -96,6 +96,10 @@ export const verifyPayment = async (req, res) => {
   try {
     const paystackRes = await verifyPaystackTransaction(reference);
 
+    if (!paystackRes || !paystackRes.data) {
+      return res.status(400).json({ message: "Payment verification failed - could not reach paystack" });
+    }
+
     if (
       paystackRes.data.status !== "success"
     ) {
