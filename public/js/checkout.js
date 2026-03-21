@@ -191,20 +191,42 @@ async function handlePayment() {
 
     // Launch Paystack popup
     const handler = PaystackPop.setup({
-      key: "pk_test_6d3d0390e7a3d5c9f52a2ef8dca629d606385986",
-      email: currentUser.email,
-      amount: orderData.paystackAmount,
-      currency: "NGN",
-      ref: `lvst_${Date.now()}`,
-      callback: async (response) => {
-        await verifyPayment(response.reference, orderData.order._id);
-      },
-      onClose: () => {
-        showToast("Payment cancelled", "error");
-        btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ₦${(cartData.total - discountAmount).toLocaleString()}`;
-      },
-    });
+  key: "pk_test_6d3d0390e7a3d5c9f52a2ef8dca629d606385986",
+  email: currentUser.email,
+  amount: orderData.paystackAmount,
+  currency: "NGN",
+  ref: `lvst_${Date.now()}`,
+  callback: function(response) {
+    fetch(`${BASE_URL}/orders/verify-payment`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        reference: response.reference,
+        orderId: orderData.order._id
+      }),
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.message) {
+        localStorage.removeItem("appliedCoupon");
+        localStorage.removeItem("discountAmount");
+        showToast("Payment successful! Order confirmed.", "success");
+        setTimeout(() => {
+          window.location.href = "./orders.html";
+        }, 1500);
+      }
+    })
+    .catch(() => showToast("Payment verification failed", "error"));
+  },
+  onClose: function() {
+    showToast("Payment cancelled", "error");
+    btn.disabled = false;
+    btn.innerHTML = `<i class="fa-solid fa-lock"></i> Pay ₦${(cartData.total - discountAmount).toLocaleString()}`;
+  },
+});
+
+
 
     handler.openIframe();
 
