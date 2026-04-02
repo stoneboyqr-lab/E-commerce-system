@@ -44,6 +44,7 @@ const __dirname = path.dirname(__filename);
 const allowedOrigins = [
   "http://localhost:5000",
   "http://127.0.0.1:5000",
+  "http://shop.lvstwebdev.com",
   process.env.CLIENT_ORIGIN,
 ].filter(Boolean);
 
