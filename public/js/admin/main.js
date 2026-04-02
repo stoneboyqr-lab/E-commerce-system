@@ -1,10 +1,10 @@
 const ADMIN_BASE_URL = window.location.hostname === "localhost" 
 ? "http://localhost:5000/api" 
-: "https://lvstcommerce-system.onrender.com/api";
+: "/api";
 
 const UPLOADS_URL = window.location.hostname === "localhost" 
 ? "http://localhost:5000/uploads"
-: "https://lvstcommerce-system.onrender.com/uploads";
+: "/uploads";
 
 // ── Check admin auth ──
 async function checkAdminAuth() {
@@ -12,7 +12,7 @@ async function checkAdminAuth() {
     const res = await fetch(`${ADMIN_BASE_URL}/auth/me`, {
       credentials: "include",
     });
-
+ 
     if (!res.ok) {
       window.location.href = "../login.html";
       return null;

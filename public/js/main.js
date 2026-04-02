@@ -1,10 +1,10 @@
 const BASE_URL = window.location.hostname === "localhost" 
 ? "http://localhost:5000/api" 
-: "https://lvstcommerce-system.onrender.com/api";
+: "/api";
 
 const UPLOADS_URL = window.location.hostname === "localhost" 
 ? "http://localhost:5000/uploads" 
-: "https://lvstcommerce-system.onrender.com/uploads";
+: "/uploads";
 
 // ── Toast notification ──
 const toast = document.getElementById("toast");
