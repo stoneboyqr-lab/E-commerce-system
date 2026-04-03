@@ -31,9 +31,7 @@ async function loadOrders() {
 
     content.innerHTML = orders.map((order) => {
       const itemsHTML = order.items.map((item) => {
-        const image = item.product?.images?.length
-          ? `${UPLOADS_URL}/${item.product.images[0]}`
-          : `https://placehold.co/56x56?text=IMG`;
+        const image = getFirstProductImage(item.product) || `https://placehold.co/56x56?text=IMG`;
 
         return `
           <div class="order-item">

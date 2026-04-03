@@ -56,7 +56,7 @@ export const createProduct = async (req, res) => {
   try {
     const { title, description, price, category, stock, salePrice, onSale, saleEnds } = req.body;
 
-    const images = req.files ? req.files.map((f) => f.filename) : [];
+    const images = req.files ? req.files.map((f) => f.path) : [];
 
     const product = await Product.create({
       title,
@@ -95,7 +95,7 @@ export const updateProduct = async (req, res) => {
     };
 
     if (req.files && req.files.length > 0) {
-      updates.images = req.files.map((f) => f.filename);
+      updates.images = req.files.map((f) => f.path);
     }
 
     const product = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });

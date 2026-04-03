@@ -6,8 +6,22 @@ const UPLOADS_URL = window.location.hostname === "localhost"
 ? "http://localhost:5000/uploads" 
 : "/uploads";
 
+function getImageUrl(image) {
+    if (!image) return "";
+    if (typeof image === "string" && /^https?:\/\//i.test(image)) return image;
+    if (typeof image === "string" && image.startsWith('/uploads/')) return image;
+    return `${UPLOADS_URL}/${image}`;
+  }
+
+  function getFirstProductImage(product) 
+  {
+if (!product || !Array.isArray(product.images) || !product.images.length)   return "";
+  return getImageUrl(product.images[0]);
+  }
+
+
 // ── Toast notification ──
-const toast = document.getElementById("toast");
+const toast = document.getElementById("toast"); 
 
 function showToast(message, type = "default") {
   toast.textContent = message;
@@ -158,9 +172,7 @@ function createProductCard(product) {
        <span class="discount">${Math.round((1 - product.salePrice / product.price) * 100)}% OFF</span>`
     : `<span class="current">₦${product.price.toLocaleString()}</span>`;
 
-  const image = product.images?.length
-    ? `${UPLOADS_URL}/${product.images[0]}`
-    : `https://placehold.co/400x300?text=${encodeURIComponent(product.title)}`;
+  const image = getFirstProductImage(product) || `https://via.placehold.co/400x300?text=${encodeURIComponent(product.title)}`;
 
   const stars = "★".repeat(Math.round(product.ratings || 0)) +
                 "☆".repeat(5 - Math.round(product.ratings || 0));

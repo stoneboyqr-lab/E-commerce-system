@@ -2,6 +2,8 @@ let cartData = null;
 let appliedCoupon = null;
 let discountAmount = 0;
 
+
+
 // ── Load cart ──
 async function loadCart() {
   const content = document.getElementById("cartContent");
@@ -46,9 +48,7 @@ function renderCart() {
 
   const itemsHTML = cartData.items.map((item) => {
     const product = item.product;
-    const image = product.images?.length
-      ? `${UPLOADS_URL}/${product.images[0]}`
-      : `https://placehold.co/100x100?text=${encodeURIComponent(product.title)}`;
+    const image = getFirstProductImage(product) || `https://placehold.co/100x100?text=${encodeURIComponent(product.title)}`;
 
     const itemTotal = item.price * item.quantity;
 

@@ -3,6 +3,8 @@ let currentUser = null;
 let appliedCoupon = JSON.parse(localStorage.getItem("appliedCoupon") || "null");
 let discountAmount = parseFloat(localStorage.getItem("discountAmount") || "0");
 
+
+
 // ── Load Paystack dynamically ──
 function loadPaystackScript() {
   return new Promise((resolve) => {
@@ -59,9 +61,7 @@ function renderCheckout() {
 
   const itemsHTML = cartData.items.map((item) => {
     const product = item.product;
-    const image = product.images?.length
-      ? `${UPLOADS_URL}/${product.images[0]}`
-      : `https://placehold.co/56x56?text=IMG`;
+    const image = getFirstProductImage(product) || `https://placehold.co/56x56?text=IMG`;
 
     return `
       <div class="checkout-item">

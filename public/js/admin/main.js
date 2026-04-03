@@ -6,6 +6,19 @@ const UPLOADS_URL = window.location.hostname === "localhost"
 ? "http://localhost:5000/uploads"
 : "/uploads";
 
+
+function getImageUrl(image) {
+    if (!image) return "";
+    if (typeof image === "string" && /^https?:\/\//i.test(image)) return image;
+    if (typeof image === "string" && image.startsWith('/uploads/')) return image;
+    return `${UPLOADS_URL}/${image}`;
+  }
+
+  function getFirstProductImage(product) 
+  {
+if (!product || !Array.isArray(product.images) || !product.images.length)   return "";
+  return getImageUrl(product.images[0]);
+  }
 // ── Check admin auth ──
 async function checkAdminAuth() {
   try {

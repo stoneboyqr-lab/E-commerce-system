@@ -2,6 +2,9 @@ const productId = new URLSearchParams(window.location.search).get("id");
 let selectedRating = 0;
 let quantity = 1;
 
+
+
+
 // ── Load product ──
 async function loadProduct() {
   const content = document.getElementById("productContent");
@@ -31,12 +34,12 @@ async function loadProduct() {
     const images = product.images?.length ? product.images : ["placeholder"];
 
     const mainImage = images[0] !== "placeholder"
-      ? `${UPLOADS_URL}/${images[0]}`
+      ? getImageUrl(images[0])
       : `https://placehold.co/600x400?text=${encodeURIComponent(product.title)}`;
 
     const thumbnails = images.map((img, i) => {
       const src = img !== "placeholder"
-        ? `${UPLOADS_URL}/${img}`
+        ? getImageUrl(img)
         : `https://placehold.co/100x100?text=IMG`;
       return `
         <div class="product-thumb ${i === 0 ? "active" : ""}" data-src="${src}">

@@ -29,7 +29,7 @@ export const createCategory = async (req, res) => {
     const category = await Category.create({
       name,
       slug,
-      image: req.file ? req.file.filename : null,
+      image: req.file ? req.file.path : null,
     });
 
     res.status(201).json({ message: "Category created", category });
@@ -49,7 +49,7 @@ export const updateCategory = async (req, res) => {
 
     const category = await Category.findByIdAndUpdate(
       req.params.id,
-      { name, slug, image: req.file ? req.file.filename : undefined },
+      { name, slug, image: req.file ? req.file.path : undefined },
       { new: true }
     );
 
